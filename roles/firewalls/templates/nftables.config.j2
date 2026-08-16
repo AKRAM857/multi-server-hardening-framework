@@ -6,4 +6,12 @@ table inet mgmt_config {
             iif lo accept
             ip saddr {{mgmt_source_inbound}} tcp dport 22 accept
          }
+      chain output {
+            type filter hook output priority 0; policy drop;
+            ct state established,related accept
+            ct state invalid drop
+            oif lo accept
+            ip daddr {{web_server_ip}} tcp dport 22 accept
+            ip daddr {{database_ip}} tcp dport 22 accept
+         }
 }
