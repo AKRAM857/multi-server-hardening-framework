@@ -1,3 +1,5 @@
 mgmt_source_inbound: 192.168.10.33
 web_server_ip: 192.168.10.44
 database_ip: 192.168.10.65
+dns_ip1: 8.8.8.8
+dns_ip2: 1.1.1.1

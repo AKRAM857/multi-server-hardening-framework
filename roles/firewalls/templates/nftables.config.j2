@@ -13,5 +13,10 @@ table inet mgmt_config {
             oif lo accept
             ip daddr {{web_server_ip}} tcp dport 22 accept
             ip daddr {{database_ip}} tcp dport 22 accept
+            ip daddr {{dns_ip1}} udp dport 53 accept
+            ip daddr {{dns_ip1}} tcp dport 53 accept
+            ip daddr {{dns_ip2}} udp dport 53 accept
+            ip daddr {{dns_ip2}} tcp dport 53 accept
+            tcp dport 443 accept
          }
 }
