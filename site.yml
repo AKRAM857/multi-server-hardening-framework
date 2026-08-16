@@ -1,0 +1,5 @@
+- name: configure management firewalls
+  hosts: management
+  become: true
+  roles:
+    - firewalls
