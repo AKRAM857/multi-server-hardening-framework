@@ -1,0 +1,2 @@
+ssh-copy-id -i ~/.ssh/ansible_controle.pub ansible@192.168.10.2   # Web Server
+ssh-copy-id -i ~/.ssh/ansible_controle.pub ansible@192.168.10.3   # Database Server

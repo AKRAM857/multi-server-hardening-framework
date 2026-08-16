@@ -1,0 +1,2 @@
+ssh -i /home/ansible_user/.ssh/ansible_controle ansible@192.168.10.2
+ssh -i /home/ansible_user/.ssh/ansible_controle ansible@192.168.10.3
