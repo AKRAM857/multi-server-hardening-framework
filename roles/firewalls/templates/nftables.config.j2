@@ -1,3 +1,4 @@
+flush ruleset;
 table inet mgmt_config {
       chain input {
             type filter hook input priority 0; policy drop;
@@ -18,5 +19,7 @@ table inet mgmt_config {
             ip daddr {{dns_ip2}} udp dport 53 accept
             ip daddr {{dns_ip2}} tcp dport 53 accept
             tcp dport 22 accept
+            tcp dport 443 accept
+            tcp dport 80 accept
          }
 }
