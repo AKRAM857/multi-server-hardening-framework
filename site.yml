@@ -3,3 +3,8 @@
   become: true
   roles:
     - firewalls
+- name: configure web server
+  hosts: web
+  become: true
+  roles:
+    - firewalls

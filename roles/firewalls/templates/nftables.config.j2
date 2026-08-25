@@ -5,14 +5,14 @@ table inet mgmt_config {
             ct state established, related accept
             ct state invalid drop
             iif lo accept
-            ip saddr {{mgmt_source_inbound}} tcp dport 22 accept
+            ip saddr {{mgmt_ip}} tcp dport 22 accept
          }
       chain output {
             type filter hook output priority 0; policy drop;
             ct state established,related accept
             ct state invalid drop
             oif lo accept
-            ip daddr {{web_server_ip}} tcp dport 22 accept
+            ip daddr {{web_ip}} tcp dport 22 accept
             ip daddr {{database_ip}} tcp dport 22 accept
             ip daddr {{dns_ip1}} udp dport 53 accept
             ip daddr {{dns_ip1}} tcp dport 53 accept
@@ -22,4 +22,17 @@ table inet mgmt_config {
             tcp dport 443 accept
             tcp dport 80 accept
          }
+}
+table inet web_config {
+        chain input {
+              type filter hook input priority 0; policy drop;
+              ct state established, related accept
+              ct state invalid drop
+              iif lo accept
+              tcp dport 443 accept
+              tcp dport 80 accept
+              {% if mgmt_ip is defined %}
+                    ip saddr {{mgmt_ip}} tcp dport 22 accept
+              {% endif %}
+            }
 }
