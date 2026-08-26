@@ -1,4 +1,4 @@
-mgmt_ip: 192.168.10.33
+management_ip: 192.168.10.33
 web_ip: 192.168.10.44
 database_ip: 192.168.10.65
 dns_ip1: 8.8.8.8

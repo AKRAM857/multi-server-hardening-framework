@@ -1,11 +1,12 @@
 flush ruleset;
+{% if 'management' in group_names %}
 table inet mgmt_config {
       chain input {
             type filter hook input priority 0; policy drop;
             ct state established, related accept
             ct state invalid drop
             iif lo accept
-            ip saddr {{mgmt_ip}} tcp dport 22 accept
+            ip saddr {{management_ip}} tcp dport 22 accept
          }
       chain output {
             type filter hook output priority 0; policy drop;
@@ -23,6 +24,8 @@ table inet mgmt_config {
             tcp dport 80 accept
          }
 }
+{% endif %}
+{% if 'web' in group_names %}
 table inet web_config {
         chain input {
               type filter hook input priority 0; policy drop;
@@ -31,8 +34,9 @@ table inet web_config {
               iif lo accept
               tcp dport 443 accept
               tcp dport 80 accept
-              {% if mgmt_ip is defined %}
-                    ip saddr {{mgmt_ip}} tcp dport 22 accept
+              {% if management_ip is defined %}
+                    ip saddr {{management_ip}} tcp dport 22 accept
               {% endif %}
             }
 }
+{% endif %}

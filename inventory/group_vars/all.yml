@@ -1,3 +1,8 @@
 ---
 ansible_ssh_private_key_file: /home/ansible_user/.ssh/ansible_controle
 ansible_user: ansible
+management_ip: 192.168.10.33
+web_ip: 192.168.10.44
+dns_ip1: 8.8.8.8
+dns_ip2: 1.1.1.1
+database_ip: 192.168.10.55
