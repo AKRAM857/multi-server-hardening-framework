@@ -32,10 +32,10 @@ table inet web_config {
               ct state established, related accept
               ct state invalid drop
               iif lo accept
-              tcp dport 443 accept
-              tcp dport 80 accept
+              iifname "enp0s8" tcp dport 443 accept
+              iifname "enp0s8" tcp dport 80 accept
               {% if management_ip is defined %}
-                    ip saddr {{management_ip}} tcp dport 22 accept
+                   iifname "enp0s3" ip saddr {{management_ip}} tcp dport 22 accept
               {% endif %}
             }
         chain output {
@@ -44,7 +44,8 @@ table inet web_config {
               ct state invalid drop
               oif lo accept
               {% if database_ip is defined %}
-                  ip daddr {{database_ip}} tcp accept
+                  ip daddr {{database_ip}} tcp dport 50000 accept
               {% endif %}
+            }
 }
 {% endif %}
