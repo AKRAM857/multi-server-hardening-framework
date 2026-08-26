@@ -38,5 +38,13 @@ table inet web_config {
                     ip saddr {{management_ip}} tcp dport 22 accept
               {% endif %}
             }
+        chain output {
+              type filter hook output priority 0; policy drop;
+              ct state established, related accept
+              ct state invalid drop
+              oif lo accept
+              {% if database_ip is defined %}
+                  ip daddr {{database_ip}} tcp accept
+              {% endif %}
 }
 {% endif %}
