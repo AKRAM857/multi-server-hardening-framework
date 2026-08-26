@@ -49,3 +49,23 @@ table inet web_config {
             }
 }
 {% endif %}
+{% if "database" in group_names %}
+table inet database_config {
+         chain input {
+            type filter hook input priority 0; policy drop;
+            ct state established,related accept
+            ct state invalid drop
+            iif lo accept
+            {% if web_ip is defined %}
+              ip saddr {{web_ip}} tcp dport 5000 accept
+            {% endif %}
+          }
+         chain output {
+            type filter hook input priority 0; policy drop;
+            ct state established, related accept
+            ct state invalid drop
+            oif lo accept
+          }
+}
+{% endif %}
+

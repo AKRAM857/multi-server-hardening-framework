@@ -8,3 +8,8 @@
   become: true
   roles:
     - firewalls
+- name: configure databse
+  hosts: database
+  become: true
+  roles:
+    - firewalls
