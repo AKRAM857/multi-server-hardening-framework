@@ -40,7 +40,7 @@ The infrastructure is designed around a single principle:
 The Management Server is the only system authorized to alter the Web Server and Database Server; all configuration flows outward from this single control point, never in reverse. Each managed server's firewall policy is derived independently from its own operational role, rather than a shared, generic ruleset.
 
 <p align="center">
-  <img src="diagrams/architecture.png" alt="Infrastructure Overview" width="900">
+  <img src="diagrams/multi-server.png" alt="Infrastructure Overview" width="900">
 </p>
 
 *(Place the architecture diagram — Administrator → Management Server (Ansible Control Node) → Web Server / Database Server, with trust zones and interface labeling — at `diagrams/architecture.png`.)*
